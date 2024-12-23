@@ -29,7 +29,7 @@ function divide (a, b) {
 }
 
 function storeCurrentValue(operatorType) {
-    if(parseInt(inputBox.value)) {  // Only continue if value is legal
+    if(parseInt(inputBox.value) && inputBox.value !== '') {  // Only continue if value is legal
         if(!holdingFirstValue) {     // Only store value if not already doing so
             firstTerm = parseInt(inputBox.value);
             console.log(`First term is ${firstTerm}.`);
@@ -58,6 +58,7 @@ function operate(a, operator, b) {
             break;
     }
     
-    console.log(ans);
-    
+    inputBox.value = '';
+    holdingFirstValue = false;
+    result.textContent = ans;
 }

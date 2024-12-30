@@ -35,12 +35,12 @@ function updateDisplay(number) {
 }
 
 function storeCurrentValue(operatorType) {
-    if(parseInt(inputBox.value) || inputBox.value === '') {  // Only continue if value is legal
+    if(parseFloat(inputBox.value) || inputBox.value === '') {  // Only continue if value is legal
         if(!holdingFirstValue) {     // Only store value if not already doing so
             
             if(operatorType !== 'equals') operatorPressed = true;
 
-            firstTerm = parseInt(inputBox.value);
+            firstTerm = parseFloat(inputBox.value);
                         
             console.log(`First term is ${firstTerm}.`);
             holdingFirstValue = true;
@@ -49,7 +49,7 @@ function storeCurrentValue(operatorType) {
             console.log(operatorPressed);
             
             if(!operatorPressed) {
-                operate(firstTerm, oType, parseInt(inputBox.value));
+                operate(firstTerm, oType, parseFloat(inputBox.value));
                 // Call function recursively 
                 storeCurrentValue(operatorType);
             }

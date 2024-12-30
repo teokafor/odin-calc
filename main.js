@@ -25,20 +25,24 @@ function updateDisplay(number) {
 }
 
 function storeCurrentValue(operatorType) {
-    operatorPressed = true;
-
     if(parseInt(inputBox.value) || inputBox.value === '') {  // Only continue if value is legal
         if(!holdingFirstValue) {     // Only store value if not already doing so
-           firstTerm = parseInt(inputBox.value);
+            
+            if(operatorType !== 'equals') operatorPressed = true;
+
+            firstTerm = parseInt(inputBox.value);
                         
             console.log(`First term is ${firstTerm}.`);
             holdingFirstValue = true;
             oType = operatorType;
         } else {
-            operate(firstTerm, oType, parseInt(inputBox.value));
-
-            // Call function recursively 
-            storeCurrentValue(operatorType);
+            console.log(operatorPressed);
+            
+            if(!operatorPressed) {
+                operate(firstTerm, oType, parseInt(inputBox.value));
+                // Call function recursively 
+                storeCurrentValue(operatorType);
+            }
         }
     } 
 }
@@ -67,5 +71,5 @@ function operate(a, operator, b) {
     // inputBox.value = '';
     holdingFirstValue = false;
     operatorPressed = false;
-    inputBox.value = ans;
+    inputBox.value = ans.toFixed(2);
 }

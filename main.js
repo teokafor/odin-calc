@@ -5,10 +5,22 @@ let oType = '';
 const inputBox = document.querySelector('.input');
 const result = document.querySelector('.result');
 
+// Wire logic buttons
 const operatorButtons = Array
 .from(document.querySelectorAll('.operator'))
 .map(item => item.addEventListener('click', e => storeCurrentValue(item.id)));
 
+
+// Wire number buttons
+const numberButtons = Array
+.from(document.querySelectorAll('.number'))
+.map(item => item.addEventListener('click', e => addDisplayNumber(item.textContent)));
+
+
+
+function addDisplayNumber(input) {
+    inputBox.value += input;
+}
 
 
 function storeCurrentValue(operatorType) {

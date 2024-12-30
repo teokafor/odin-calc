@@ -1,9 +1,20 @@
 
 let firstTerm = ans = 0;
 let holdingFirstValue = false;
+let operatorPressed = false;
+
 let oType = '';
 const inputBox = document.querySelector('.input');
 const result = document.querySelector('.result');
+const clearButton = document.querySelector('#clear');
+
+clearButton.addEventListener('click', e => resetCalculator());
+
+function resetCalculator() {
+    firstTerm = ans = 0;
+    holdingFirstValue = operatorPressed = false;
+    inputBox.value = '';
+}
 
 // Wire logic buttons
 const operatorButtons = Array
@@ -15,7 +26,6 @@ const numberButtons = Array
 .from(document.querySelectorAll('.number'))
 .map(item => item.addEventListener('click', e => updateDisplay(item.textContent)));
 
-let operatorPressed = false;
 function updateDisplay(number) {
     if(operatorPressed) { // Clear the display if an operator was just pressed.
         inputBox.value = '';

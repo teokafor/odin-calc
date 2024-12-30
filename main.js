@@ -10,27 +10,27 @@ const operatorButtons = Array
 .from(document.querySelectorAll('.operator'))
 .map(item => item.addEventListener('click', e => storeCurrentValue(item.id)));
 
-
 // Wire number buttons
 const numberButtons = Array
 .from(document.querySelectorAll('.number'))
-.map(item => item.addEventListener('click', e => addDisplayNumber(item.textContent)));
+.map(item => item.addEventListener('click', e => updateDisplay(item.textContent)));
 
-
-
-function addDisplayNumber(input) {
-    inputBox.value += input;
+let operatorPressed = false;
+function updateDisplay(number) {
+    if(operatorPressed) { // Clear the display if an operator was just pressed.
+        inputBox.value = '';
+        operatorPressed = false;
+    }
+    inputBox.value += number;
 }
 
-
 function storeCurrentValue(operatorType) {
+    operatorPressed = true;
+
     if(parseInt(inputBox.value) || inputBox.value === '') {  // Only continue if value is legal
         if(!holdingFirstValue) {     // Only store value if not already doing so
-            if(result.textContent !== '0') firstTerm = parseInt(result.textContent);
-            else firstTerm = parseInt(inputBox.value);
-            
-            inputBox.value = '';
-            
+           firstTerm = parseInt(inputBox.value);
+                        
             console.log(`First term is ${firstTerm}.`);
             holdingFirstValue = true;
             oType = operatorType;
@@ -64,16 +64,8 @@ function operate(a, operator, b) {
             break;
     }
     
-    inputBox.value = '';
+    // inputBox.value = '';
     holdingFirstValue = false;
-    result.textContent = ans;
+    operatorPressed = false;
+    inputBox.value = ans;
 }
-
-/*
-
-TODO:
-
-Add number pad
-Change text input to display only.
-
-*/

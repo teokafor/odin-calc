@@ -11,23 +11,6 @@ const operatorButtons = Array
 
 
 
-// TODO: replace with arrows.
-function add (a, b) {
-    return a + b;
-}
-
-function subtract (a, b) {
-    return a - b;
-}
-
-function multiply (a, b) {
-    return a * b;
-}
-
-function divide (a, b) {
-    return a / b;
-}
-
 function storeCurrentValue(operatorType) {
     if(parseInt(inputBox.value) || inputBox.value === '') {  // Only continue if value is legal
         if(!holdingFirstValue) {     // Only store value if not already doing so
@@ -47,6 +30,11 @@ function storeCurrentValue(operatorType) {
         }
     } 
 }
+
+const add = (a, b) => a + b;
+const subtract = (a, b) => a - b;
+const multiply = (a, b) => a * b;
+const divide = (a, b) => a / b;
 
 function operate(a, operator, b) {
     switch (operator) {

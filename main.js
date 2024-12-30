@@ -5,7 +5,6 @@ let operatorPressed = false;
 
 let oType = '';
 const inputBox = document.querySelector('.input');
-const result = document.querySelector('.result');
 const clearButton = document.querySelector('#clear');
 
 clearButton.addEventListener('click', e => resetCalculator());
@@ -78,7 +77,6 @@ function operate(a, operator, b) {
             break;
     }
     
-    // inputBox.value = '';
     holdingFirstValue = false;
     operatorPressed = false;
     inputBox.value = ans.toFixed(2);

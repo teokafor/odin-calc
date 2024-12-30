@@ -29,15 +29,21 @@ function divide (a, b) {
 }
 
 function storeCurrentValue(operatorType) {
-    if(parseInt(inputBox.value) && inputBox.value !== '') {  // Only continue if value is legal
+    if(parseInt(inputBox.value) || inputBox.value === '') {  // Only continue if value is legal
         if(!holdingFirstValue) {     // Only store value if not already doing so
-            firstTerm = parseInt(inputBox.value);
-            console.log(`First term is ${firstTerm}.`);
+            if(result.textContent !== '0') firstTerm = parseInt(result.textContent);
+            else firstTerm = parseInt(inputBox.value);
+            
             inputBox.value = '';
+            
+            console.log(`First term is ${firstTerm}.`);
             holdingFirstValue = true;
             oType = operatorType;
         } else {
             operate(firstTerm, oType, parseInt(inputBox.value));
+
+            // Call function recursively 
+            storeCurrentValue(operatorType);
         }
     } 
 }
@@ -62,3 +68,12 @@ function operate(a, operator, b) {
     holdingFirstValue = false;
     result.textContent = ans;
 }
+
+/*
+
+TODO:
+
+Add number pad
+Change text input to display only.
+
+*/
